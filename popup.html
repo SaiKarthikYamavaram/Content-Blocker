@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="popup.css" />
+
+		<script src="jquery-4.0.0.min.js"></script>
+	</head>
+	<body>
+		<h1>Content Blocker</h1>
+
+		<div class="container1">
+			<label for="addvalue">Keyword to Block Content</label>
+			<br />
+			<input
+				type="text"
+				id="userinput"
+				class="user-input"
+				placeholder="Enter keyword to restrict content"
+				autofocus
+			/>
+			<button type="button" class="btn" id="addButton">Add</button>
+		</div>
+		<div class="keyword-container">
+			Keywords List <span>0</span>
+			<div class="keywords-list"> </div>
+		</div>
+		<script src="popup.js"></script>
+	</body>
+</html>
