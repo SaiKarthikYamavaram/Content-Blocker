@@ -23,7 +23,7 @@
 			"default": "Ctrl+Shift+F",
 			"mac": "MacCtrl+Shift+F"
 		  },
-		  "description": "Opens hello.html"
+		  "description": "Opens Content Blocker"
 		}
 	  },
 	"content_scripts": [
