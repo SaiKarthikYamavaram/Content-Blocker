@@ -12,17 +12,24 @@
 		"default": "icon16.png",
 		"default_popup": "popup.html"
 	},
-	"permissions": ["storage","activeTab"],
+	"permissions": ["storage", "activeTab", "contextMenus"],
 	"background": {
-		"scripts": ["popup.js"]
+		"scripts": ["popup.js", "jquery-3.5.0.min.js"],
+		"persistent": false
 	},
+	"commands": {
+		"_execute_browser_action": {
+		  "suggested_key": {
+			"default": "Ctrl+Shift+F",
+			"mac": "MacCtrl+Shift+F"
+		  },
+		  "description": "Opens hello.html"
+		}
+	  },
 	"content_scripts": [
 		{
-			"matches": ["http://*/*", "https://*/*"],
-			"js": ["jquery-4.0.0.min.js", "hide-content.js"],
-			"run_at": "document_end"
+			"matches": ["<all_urls>"],
+			"js": ["access.js"]
 		}
-		
-	],
-	"content_security_policy": "script-src 'self' https://ajax.googleapis.com object-src 'self'"
+	]
 }
