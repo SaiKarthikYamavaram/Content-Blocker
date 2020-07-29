@@ -5,7 +5,11 @@
 	box-sizing: border-box;
 	color: #53a1b3;
 }
-body {
+html {
+	max-width: 310px;
+	max-height: 400px;
+}
+.body {
 	box-sizing: inherit;
 	width: 310px;
 	height: 400px;
@@ -15,6 +19,7 @@ body {
 	border-radius: 7px;
 	/* color: #e96c4c; */
 	padding: 5px;
+	overflow-y: auto;
 }
 
 h1 {
@@ -27,7 +32,7 @@ h1 {
 	margin-bottom: 10px;
 	border-bottom: 2px solid #53a1b3;
 	position: sticky;
-	top:0;
+	top: 0;
 }
 .user-input {
 	box-sizing: inherit;
@@ -66,4 +71,7 @@ h1 {
 
 .primary-color {
 	color: rgb(131, 121, 107);
+}
+.keywords-list {
+	overflow-y: scroll;
 }

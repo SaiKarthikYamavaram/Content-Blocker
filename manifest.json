@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "Content Blocker",
 	"version": "0.0.1",
-	"description": "A keyword based content blocking extension built with love ❤ ",
+	"description": "A keyword based content blocker built with love ❤ ",
 	"icons": {
 		"120": "icons/icon128.png",
 		"48": "icons/icon48.png",
@@ -14,18 +14,18 @@
 	},
 	"permissions": ["storage", "activeTab", "contextMenus"],
 	"background": {
-		"scripts": ["popup.js", "jquery-3.5.0.min.js"],
+		"scripts": ["jquery-3.5.0.min.js"],
 		"persistent": false
 	},
 	"commands": {
 		"_execute_browser_action": {
-		  "suggested_key": {
-			"default": "Ctrl+Shift+F",
-			"mac": "MacCtrl+Shift+F"
-		  },
-		  "description": "Opens Content Blocker"
+			"suggested_key": {
+				"default": "Ctrl+Shift+F",
+				"mac": "MacCtrl+Shift+F"
+			},
+			"description": "Opens Content Blocker"
 		}
-	  },
+	},
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
