@@ -1,7 +1,6 @@
 re = (child) => {
 	child.parentNode.remove(child);
 	const request = indexedDB.open("content-blocker", 1);
-	console.log(child.id);
 	// const request = indexedDB.open("content-blocker", 1);
 	request.onsuccess = (e) => {
 		db = e.target.result;
@@ -10,9 +9,7 @@ re = (child) => {
 		objectstore.delete(parseInt(child.id));
 	};
 };
-window.onloadend = function () {
-	console.log("ended");
-};
+
 window.onload = function () {
 	var butn = document.querySelector("#addButton");
 	var input = document.querySelector("input");
@@ -33,10 +30,7 @@ window.onload = function () {
 
 		request.onsuccess = (e) => {
 			db = e.target.result;
-			console.log("success");
-			console.log(db);
 			viewNotes(db);
-			console.log("successful");
 		};
 		request.onerror = (e) => {
 			console.log("error" + e.target.errror);
@@ -61,9 +55,6 @@ window.onload = function () {
 	});
 
 	async function viewNotes(db) {
-		// console.log(db)
-
-		console.log(db);
 		const tx = db.transaction("cb_keywords", "readonly");
 		const pNotes = tx.objectStore("cb_keywords");
 		const request = pNotes.openCursor();
@@ -79,11 +70,15 @@ window.onload = function () {
 					"id=" +
 					cursor.key +
 					" " +
-					"onclick={re(this);}" +
 					">Delete</button></div>" +
 					keyword.innerHTML;
 				cursor.continue();
-				// console.log("continue");
+				console.log("continue");
+			} else {
+				const nodelist = document.querySelectorAll(".remove");
+				const arr = [...nodelist];
+				console.log(arr);
+				arr.map((item) => item.addEventListener("click", () => re(item)));
 			}
 		};
 	}
