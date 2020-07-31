@@ -31,5 +31,6 @@
 			"matches": ["<all_urls>"],
 			"js": ["access.js"]
 		}
-	]
+	],
+	"content_security_policy": "script-src  'unsafe-inline' 'self' https://apis.google.com; object-src 'self'"
 }
