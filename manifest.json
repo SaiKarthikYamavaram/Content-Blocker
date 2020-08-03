@@ -12,11 +12,7 @@
 		"default": "icon16.png",
 		"default_popup": "popup.html"
 	},
-	"permissions": ["storage", "activeTab", "contextMenus"],
-	"background": {
-		"scripts": ["jquery-3.5.0.min.js"],
-		"persistent": false
-	},
+	"permissions": ["storage", "activeTab", "contextMenus","tabs"],
 	"commands": {
 		"_execute_browser_action": {
 			"suggested_key": {
@@ -26,10 +22,14 @@
 			"description": "Opens Content Blocker"
 		}
 	},
+	"background": {
+		"persistent": false,
+		"scripts": ["background.js"]
+	  },
 	"content_scripts": [
 		{
 			"matches": ["<all_urls>"],
-			"js": ["access.js"]
+			"js": ["jquery-3.5.0.min.js","demo.js" ,"hide-content.js"]
 		}
 	]
 }

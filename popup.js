@@ -1,7 +1,6 @@
 re = (child) => {
 	child.parentNode.remove(child);
 	const request = indexedDB.open("content-blocker", 1);
-	// const request = indexedDB.open("content-blocker", 1);
 	request.onsuccess = (e) => {
 		db = e.target.result;
 		const tx = db.transaction(["cb_keywords"], "readwrite");
@@ -9,7 +8,18 @@ re = (child) => {
 		objectstore.delete(parseInt(child.id));
 	};
 };
+function setDOMInfo(info) {
+	console.log(info);
+}
+function msgSender(kw) {
+	// ...query for the active tab...
 
+	// ...and send a request for the DOM info...
+	chrome.runtime.sendMessage(
+		{ from: "popup", subject: kw },
+		setDOMInfo
+	);
+}
 window.onload = function () {
 	var butn = document.querySelector("#addButton");
 	var input = document.querySelector("input");
@@ -58,7 +68,7 @@ window.onload = function () {
 		const tx = db.transaction("cb_keywords", "readonly");
 		const pNotes = tx.objectStore("cb_keywords");
 		const request = pNotes.openCursor();
-
+		var kw = [];
 		request.onsuccess = (e) => {
 			const cursor = e.target.result;
 			if (cursor) {
@@ -72,13 +82,15 @@ window.onload = function () {
 					" " +
 					">Delete</button></div>" +
 					keyword.innerHTML;
+				kw.push(cursor.value.keyword);
 				cursor.continue();
 				console.log("continue");
 			} else {
 				const nodelist = document.querySelectorAll(".remove");
 				const arr = [...nodelist];
-				console.log(arr);
 				arr.map((item) => item.addEventListener("click", () => re(item)));
+				console.log(kw);
+				msgSender(kw);
 			}
 		};
 	}
