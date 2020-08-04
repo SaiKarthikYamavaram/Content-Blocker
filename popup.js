@@ -1,3 +1,5 @@
+var kwLen = document.querySelector("#keyword-length");
+console.log(kwLen)
 re = (child) => {
 	child.parentNode.remove(child);
 	const request = indexedDB.open("content-blocker", 1);
@@ -6,6 +8,7 @@ re = (child) => {
 		const tx = db.transaction(["cb_keywords"], "readwrite");
 		const objectstore = tx.objectStore("cb_keywords");
 		objectstore.delete(parseInt(child.id));
+		kwLen.textContent -=1; 
 	};
 };
 function setDOMInfo(info) {
@@ -20,11 +23,12 @@ function msgSender(kw) {
 		setDOMInfo
 	);
 }
+
 window.onload = function () {
 	var butn = document.querySelector("#addButton");
 	var input = document.querySelector("input");
 	var keyword = document.querySelector("#keywords-list");
-
+	
 	let db = null;
 	const createdb = () => {
 		const request = indexedDB.open("content-blocker", 1);
@@ -52,7 +56,7 @@ window.onload = function () {
 		if (input.value) {
 			keyword.innerHTML =
 				"<div class=keyword-element>" +
-				input.value +
+				input.value +"<span class='badge  badge-pill badge-danger float-right'>New</span>"+
 				"</div>" +
 				keyword.innerHTML;
 
@@ -61,6 +65,7 @@ window.onload = function () {
 			var obj = { keyword: input.value };
 			pNotes.add(obj);
 			input.value = "";
+			kwLen.textContent = parseInt(kwLen.textContent) +1;
 		}
 	});
 
@@ -76,11 +81,11 @@ window.onload = function () {
 				keyword.innerHTML =
 					"<div class=keyword-element>" +
 					cursor.value.keyword +
-					'<button class="remove"' +
+					'<button class="remove close"' +
 					"id=" +
 					cursor.key +
 					" " +
-					">Delete</button></div>" +
+					">X</button></div>" +
 					keyword.innerHTML;
 				kw.push(cursor.value.keyword);
 				cursor.continue();
@@ -91,6 +96,8 @@ window.onload = function () {
 				arr.map((item) => item.addEventListener("click", () => re(item)));
 				console.log(kw);
 				msgSender(kw);
+			kwLen.textContent = kw.length;
+
 			}
 		};
 	}

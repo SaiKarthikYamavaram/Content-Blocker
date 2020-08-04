@@ -8,13 +8,13 @@
 html {
 	max-width: 310px;
 	max-height: 400px;
+	/* background: linear-gradient(#2193b0,#6dd5ed); */
 }
 .body {
 	box-sizing: inherit;
 	width: 310px;
 	height: 400px;
-	background-color: #141e24;
-	border: 2px solid rgb(131, 121, 107);
+	border: 2px solid grey;
 	/* border-bottom-right-radius: 5px; */
 	border-radius: 7px;
 	/* color: #e96c4c; */
@@ -35,26 +35,17 @@ h1 {
 	border-bottom: 2px solid #53a1b3;
 	position: sticky;
 	top: 0;
-	background-color: #141e24;
+	background-color: white;
 	z-index: 5;
 }
 .user-input {
-	box-sizing: inherit;
-	width: 280px;
-	padding: 4px;
-	border-radius: 3px;
-	border: none;
-	margin: 10px;
+	
 	/* background-color: aliceblue; */
 	border-left: 2px solid;
 	border-left-color: #e96c4c;
-	color: #141e24;
-	font-weight: 300;
+	font-weight: bold;
 }
-.user-input::placeholder {
-	color: #141e24;
-	font-weight: 100;
-}
+
 .user-input::selection {
 	background-color: transparent;
 }
@@ -74,6 +65,7 @@ input:focus {
 	/* color: white; */
 	transition: all 500ms;
 	font-weight: 700;
+	
 }
 .btn:focus {
 	outline: 0;
@@ -96,8 +88,9 @@ input:focus {
 	margin: 2px;
 	padding: 5px;
 	width: 95%;
-	border: 1px solid white;
+	border: 2px solid grey;
 	margin: 4px auto;
 	font-size: 16px;
 	/* width: max-content; */
 }
+

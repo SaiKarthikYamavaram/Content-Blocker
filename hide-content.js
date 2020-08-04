@@ -49,7 +49,7 @@ getkw = async () => {
 		}
 
 		function hideNode(node) {
-			node.textContent = "[TEXT BLOCKED: SPOILER DETECTED]";
+			node.textContent = "[TEXT BLOCKED: KEYWORD DETECTED]";
 			node.style.color = "red";
 		}
 	});
